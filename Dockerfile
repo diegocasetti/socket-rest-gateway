@@ -10,12 +10,14 @@ COPY package*.json ./
 
 RUN yarn install
 
-RUN yarn run build
 # If you are building your code for production
 # RUN npm ci --only=production
 
 # Bundle app source
 COPY . .
+
+RUN cd /usr/src/app
+RUN yarn run build
 
 EXPOSE 8080
 CMD [ "yarn", "run", "watch-node" ]
